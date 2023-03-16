@@ -1,0 +1,31 @@
+{
+  "name": "drag-drop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    
+    "@fortawesome/vue-fontawesome": "^3.0.2",
+    "@popperjs/core": "^2.11.6",
+    "axios": "^1.2.2",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
+    "bootstrap-vue": "^2.23.1",
+    "chart.js": "^4.2.0",
+    "vue": "^3.2.45",
+    "vue-chartjs": "^5.2.0",
+    "vue-feather-icons": "^5.1.0",
+    "vue-router": "^4.1.6",
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "vite": "^4.0.0"
+  }
+}
