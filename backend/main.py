@@ -14,24 +14,17 @@ from flask_caching import Cache
 
 from application.jobs.tasks import google_chat_daily, google_chat_monthly
 
-app = None
-api = None
-celery = None
-cache = None
-
 
 def create_app():
     app = Flask(__name__, template_folder="templates")
 
-    print(os.getenv('ENV', "development"))
+    # print(os.getenv('ENV', "development"))
     if os.getenv('ENV', "development") == "production":
       app.logger.info("Currently no production config is setup.")
       raise Exception("Currently no production config is setup.")
     elif os.getenv('ENV', "development") == "stage":
       app.logger.info("Staring stage.")
-      print("Staring  stage")
       app.config.from_object(StageConfig)
-      print("pushed config")
     else:
       app.logger.info("Staring Local Development.")
       print("Staring Local Development")
@@ -39,11 +32,12 @@ def create_app():
       print("pushed config")
     app.app_context().push()
     print("DB Init")
-    db.init_app(app)
+    with app.app_context():
+        db.init_app(app)
     print("DB Init complete")
     app.app_context().push()
     app.logger.info("App setup complete")
-    
+
     api = Api(app)
     app.app_context().push()
 
@@ -52,8 +46,8 @@ def create_app():
 
     # Update with configuration
     celery.conf.update(
-        broker_url = app.config["CELERY_BROKER_URL"],
-        result_backend = app.config["CELERY_RESULT_BACKEND"]
+        broker_url=app.config["CELERY_BROKER_URL"],
+        result_backend=app.config["CELERY_RESULT_BACKEND"]
     )
 
     celery.Task = workers.ContextTask
@@ -137,4 +131,4 @@ def download_report_csv(list_id):
 
 if __name__ == '__main__':
   # Run the Flask app
-  app.run(host='0.0.0.0',port=8080)
+  app.run(host='0.0.0.0', port=8080)

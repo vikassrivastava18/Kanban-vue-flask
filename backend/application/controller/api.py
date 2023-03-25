@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, make_response, jsonify
 from datetime import datetime, timedelta
 
+
 from application.data.models import User, TokenLogout, Card, List
 
 create_user_parser = reqparse.RequestParser()
@@ -143,7 +144,6 @@ class CardResource(Resource):
                 'message': 'Card removed'
             }
             return make_response(jsonify(response), 200)
-
 
 
 class RegisterAPI(Resource):
