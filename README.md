@@ -1,7 +1,7 @@
 # Kanban-vue-flask
 
-## Summary - 
-- A user needs to register to the application with a username, email and password. Password is hashed using werkzeug.security. Authentication is done with JWT, which carries the payload (user id and expiration time). Once registered, they can create lists and cards for daily tasks. The token is saved in Users local storage and sent along with every request.
+## Summary
+- A user needs to register for the application with a username, email and password. Password is hashed using werkzeug.security. Authentication is done with JWT, which carries the payload (user id and expiration time). Once registered, they can create lists and cards for daily tasks. The token is saved in Users local storage and sent along with every request.
 
 - A card has the information about the deadline and the completion time. Comparing the completion time and the deadline, one can tell if the card was not finished in time, is pending, or delayed.
 
